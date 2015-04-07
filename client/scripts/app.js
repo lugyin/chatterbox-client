@@ -1,4 +1,4 @@
-var message = {
+var test = {
  'username': 'Lu&Joe',
   'text': 'help',
   'roomname': 'HRW8-13A'
@@ -11,24 +11,23 @@ var message = {
 
 $(document).ready(function(){
   //append app to <h1>chatterbox</h1>
-  app.fetch();
+
+
+
+
+
 });
 
-
-
+app.server = 'https://api.parse.com/1/classes/chatterbox';
 
 app.fetch = function(){
   $.ajax({
-    // url: 'https://api.parse.com/1/classes/chatterbox',
+    url: 'https://api.parse.com/1/classes/chatterbox',
     type: 'GET',
       // data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
-        _.extend(app, data);
-        console.log(app);
-        for(var i = 0; i < app.results.length; i++) {
-          $('h1').append('<div>' + app.results[i].text + '</div>');
-        }
+      console.log('success');
       },
       error: function (data) {
         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -36,6 +35,27 @@ app.fetch = function(){
       }
   });
 };
+
+
+// app.get = function(){
+//   $.ajax({
+//     url: 'https://api.parse.com/1/classes/chatterbox',
+//     type: 'GET',
+//       // data: JSON.stringify(message),
+//       contentType: 'application/json',
+//       success: function (data) {
+//         _.extend(app, data);
+//         console.log(app);
+//         for(var i = 0; i < app.results.length; i++) {
+//           $('#allChats').append('<div id="chat">' + app.results[i].text + '</div>');
+//         }
+//       },
+//       error: function (data) {
+//         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
+//         console.error('chatterbox: Failed to retrieve information');
+//       }
+//   });
+// };
 
  app.send = function(message){
 
@@ -54,18 +74,23 @@ app.fetch = function(){
   });
 };
 
+
 app.clearMessages = function(){
-  $('#chat').html('');
+   $('#chats').html('');
 };
 
 app.addMessage = function(message){
-  $('h1').append('<div #chat>' + message.text + '</div>');
 
-}
+    $('#chats').append('<div id="chat">' + message.text + '</div>');
+    // $('#chats').append('<div id="chat">' + message.username + '</div>');
+    // $('#chats').append('<div id="chat">' + message.roomname + '</div>');
+};
+
 
 app.addRoom = function(room){
+  $('#roomSelect').append('<div id="room">' + message.roomname + '</div>');
 
-}
+};
 
 
 
