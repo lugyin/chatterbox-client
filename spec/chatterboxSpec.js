@@ -27,6 +27,8 @@ describe('chatterbox', function() {
         expect(app.send).to.be.ok;
       });
 
+
+
       it('should submit a POST request via $.ajax', function(done){
         app.send([]);
         expect($.ajax.calledOnce).to.be.true;
@@ -52,6 +54,8 @@ describe('chatterbox', function() {
 
     });
 
+
+
     describe('fetching', function() {
       it('should have a fetch method', function(){
         expect(app.fetch).to.be.ok;
@@ -66,6 +70,9 @@ describe('chatterbox', function() {
       });
 
     });
+
+
+
 
     describe('chatroom behavior', function() {
       it('should be able to clear messages from the DOM', function(){
@@ -86,6 +93,10 @@ describe('chatterbox', function() {
         expect($('#chats').children().length).to.equal(1);
       });
 
+
+
+
+
       it('should be able to add rooms to the DOM', function(){
         app.addRoom('superLobby');
 
@@ -93,6 +104,9 @@ describe('chatterbox', function() {
       });
 
     });
+
+
+
 
     describe('events', function() {
       it('should add a friend upon clicking their username', function(){

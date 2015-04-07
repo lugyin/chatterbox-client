@@ -7,19 +7,19 @@ var message = {
  var app = {};
  app.init = function(){};
 
- app.send = function(){};
-
 
 
 $(document).ready(function(){
   //append app to <h1>chatterbox</h1>
-  get();
+  app.fetch();
 });
 
 
-var get = function(){
+
+
+app.fetch = function(){
   $.ajax({
-    url: 'https://api.parse.com/1/classes/chatterbox',
+    // url: 'https://api.parse.com/1/classes/chatterbox',
     type: 'GET',
       // data: JSON.stringify(message),
       contentType: 'application/json',
@@ -32,23 +32,40 @@ var get = function(){
       },
       error: function (data) {
         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-        console.error('chatterbox: Failed to retreieve information');
+        console.error('chatterbox: Failed to retrieve information');
       }
   });
+};
+
+ app.send = function(message){
+
+  $.ajax({
+    url: 'https://api.parse.com/1/classes/chatterbox',
+    type: 'POST',
+    data: JSON.stringify(message),
+    contentType: 'application/json',
+    success: function (data) {
+      console.log('chatterbox: Message sent');
+    },
+    error: function (data) {
+      // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
+      console.error('chatterbox: Failed to send message');
+    }
+  });
+};
+
+app.clearMessages = function(){
+  $('#chat').html('');
+};
+
+app.addMessage = function(message){
+  $('h1').append('<div #chat>' + message.text + '</div>');
+
+}
+
+app.addRoom = function(room){
+
 }
 
 
-// $ajax({
-//   url: 'https://api.parse.com/1/classes/chatterbox',
-//   type: 'POST',
-//   data: JSON.stringify(message),
-//   contentType: 'application/json',
-//   success: function (data) {
-//     console.log('chatterbox: Message sent');
-//   },
-//   error: function (data) {
-//     // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-//     console.error('chatterbox: Failed to send message');
-//   }
-// });
 
