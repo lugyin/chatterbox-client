@@ -11,7 +11,9 @@ var test = {
 
 $(document).ready(function(){
   //append app to <h1>chatterbox</h1>
+  $('.clickable').on('click', function(event) {
 
+  });
 
 
 
@@ -37,25 +39,6 @@ app.fetch = function(){
 };
 
 
-// app.get = function(){
-//   $.ajax({
-//     url: 'https://api.parse.com/1/classes/chatterbox',
-//     type: 'GET',
-//       // data: JSON.stringify(message),
-//       contentType: 'application/json',
-//       success: function (data) {
-//         _.extend(app, data);
-//         console.log(app);
-//         for(var i = 0; i < app.results.length; i++) {
-//           $('#allChats').append('<div id="chat">' + app.results[i].text + '</div>');
-//         }
-//       },
-//       error: function (data) {
-//         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-//         console.error('chatterbox: Failed to retrieve information');
-//       }
-//   });
-// };
 
  app.send = function(message){
 
@@ -76,14 +59,12 @@ app.fetch = function(){
 
 
 app.clearMessages = function(){
-   $('#chats').html('');
+  $('#chats').html('');
 };
 
 app.addMessage = function(message){
 
-    $('#chats').append('<div id="chat">' + message.text + '</div>');
-    // $('#chats').append('<div id="chat">' + message.username + '</div>');
-    // $('#chats').append('<div id="chat">' + message.roomname + '</div>');
+  $('#chats').append('<div id="chat">' + 'message: ' +message.text + "<br>" + 'username: ' + '<span class="clickable">' + message.username + '</span>' +'</div>');
 };
 
 
@@ -92,5 +73,24 @@ app.addRoom = function(room){
 
 };
 
+// app.get = function(){
+//   $.ajax({
+//     url: 'https://api.parse.com/1/classes/chatterbox',
+//     type: 'GET',
+//       // data: JSON.stringify(message),
+//       contentType: 'application/json',
+//       success: function (data) {
+//         _.extend(app, data);
+//         console.log(app);
+//         for(var i = 0; i < app.results.length; i++) {
+//           $('#allChats').append('<div id="chat">' + app.results[i].text + '</div>');
+//         }
+//       },
+//       error: function (data) {
+//         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
+//         console.error('chatterbox: Failed to retrieve information');
+//       }
+//   });
+// };
 
 
