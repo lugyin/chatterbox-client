@@ -10,16 +10,35 @@ var test = {
 
 
 
-$(document).ready(function(){
-  //append app to <h1>chatterbox</h1>
-  // $('.clickable').on('click', '.username' function(event) {
+ $(document).ready(function(){
+
+   app.get();
+
+   $('#main').on('click', '.username', function(event) {
     app.addFriend($(this).val);
-  // });
+    console.log("added Friend");
+  });
 
-app.get();
+   app.handleSubmit();
+
+   // $('h1').append('<div id="send"><input class="userName">Username</input><input class="submit">Message<button class="button">Submit</button></input></div>').on('click', '.button' ,function(event) {
+   //   var message = $('.submit').val();
+   //   var username = $('.userName').val();
+   //   console.log(username, message);
+   //   $('#chats').append('<div id="chats">' + 'message: ' +message + "<br>" + 'username: ' + '<span class="username">' + username + '</span>' +'</div>');
+   // });
 
 
-});
+ });
+
+app.handleSubmit = function() {
+  $('h1').append('<div id="send"><input class="userName">Username</input><input class="submit">Message<button class="button">Submit</button></input></div>').on('click', '.button' ,function(event) {
+     var message = $('.submit').val();
+     var username = $('.userName').val();
+     console.log(username, message);
+     $('#message').append('<div id="chats">' + 'message: ' +message + "<br>" + 'username: ' + '<span class="username">' + username + '</span>' +'</div>');
+   });
+}
 
 app.addFriend = function(value) {
   app.friends.push(value);
@@ -69,7 +88,7 @@ app.clearMessages = function(){
 
 app.addMessage = function(message){
 
-  $('#chats').append('<div id="chat">' + 'message: ' +message.text + "<br>" + 'username: ' + '<span class="clickable">' + message.username + '</span>' +'</div>');
+  $('#chats').append('<div id="chats">' + 'message: ' +message.text + "<br>" + 'username: ' + '<span class="username">' + message.username + '</span>' +'</div>');
 };
 
 
@@ -89,6 +108,7 @@ app.get = function(){
         console.log(app);
         for(var i = 0; i < app.results.length; i++) {
           $('#chats').append('<div id="chat">' + app.results[i].text + '</div>');
+         $('#chats').append('<div class="username">' + app.results[i].username + '</div>');
         }
       },
       error: function (data) {
@@ -97,7 +117,6 @@ app.get = function(){
       }
   });
 };
-
 
 
 

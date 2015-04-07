@@ -126,12 +126,14 @@ describe('chatterbox', function() {
 
 
         app.init();
-
+        debugger;
         $('#main').find('.username').trigger('click');
         expect(app.addFriend.called).to.be.true;
 
         app.addFriend.restore();
       });
+
+
 
       it('should try to send a message upon clicking submit', function(){
         sinon.spy(app, 'handleSubmit');
