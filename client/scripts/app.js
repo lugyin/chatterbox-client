@@ -5,20 +5,25 @@ var test = {
 };
 
  var app = {};
+ app.friends = [];
  app.init = function(){};
 
 
 
 $(document).ready(function(){
   //append app to <h1>chatterbox</h1>
-  $('.clickable').on('click', function(event) {
+  // $('.clickable').on('click', '.username' function(event) {
+    app.addFriend($(this).val);
+  // });
 
-  });
-
-
+app.get();
 
 
 });
+
+app.addFriend = function(value) {
+  app.friends.push(value);
+}
 
 app.server = 'https://api.parse.com/1/classes/chatterbox';
 
@@ -73,24 +78,26 @@ app.addRoom = function(room){
 
 };
 
-// app.get = function(){
-//   $.ajax({
-//     url: 'https://api.parse.com/1/classes/chatterbox',
-//     type: 'GET',
-//       // data: JSON.stringify(message),
-//       contentType: 'application/json',
-//       success: function (data) {
-//         _.extend(app, data);
-//         console.log(app);
-//         for(var i = 0; i < app.results.length; i++) {
-//           $('#allChats').append('<div id="chat">' + app.results[i].text + '</div>');
-//         }
-//       },
-//       error: function (data) {
-//         // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-//         console.error('chatterbox: Failed to retrieve information');
-//       }
-//   });
-// };
+app.get = function(){
+  $.ajax({
+    url: 'https://api.parse.com/1/classes/chatterbox',
+    type: 'GET',
+      // data: JSON.stringify(message),
+      contentType: 'application/json',
+      success: function (data) {
+        _.extend(app, data);
+        console.log(app);
+        for(var i = 0; i < app.results.length; i++) {
+          $('#chats').append('<div id="chat">' + app.results[i].text + '</div>');
+        }
+      },
+      error: function (data) {
+        // see: https://developer.mozilla.org/en-US/docs/Web/API/console.error
+        console.error('chatterbox: Failed to retrieve information');
+      }
+  });
+};
+
+
 
 
